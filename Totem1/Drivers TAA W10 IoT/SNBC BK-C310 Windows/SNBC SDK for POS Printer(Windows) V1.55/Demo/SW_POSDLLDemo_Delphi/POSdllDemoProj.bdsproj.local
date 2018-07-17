@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2006-12-18 13:11:19.390.pas,D:\Documents and Settings\liuhui\My Documents\Borland Studio Projects\Unit1.pas=E:\Delphi小程序\POSdllDemo\PosDllDemo.pas</Transaction>
+    <Transaction>2006-12-18 13:11:19.390.dfm,D:\Documents and Settings\liuhui\My Documents\Borland Studio Projects\Unit1.dfm=E:\Delphi小程序\POSdllDemo\PosDllDemo.dfm</Transaction>
+    <Transaction>2006-12-18 13:13:47.765.bdsproj,D:\Documents and Settings\liuhui\My Documents\Borland Studio Projects\Project1.bdsproj=E:\Delphi小程序\POSdllDemo\POSdllDemoProj.bdsproj</Transaction>
+  </Transactions>
+</BorlandProject>

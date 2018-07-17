@@ -1,0 +1,82 @@
+; Sample combination printer INF for Windows OS.
+; 
+
+[Version]
+Signature="$Windows NT$"
+Provider=%SNBC%
+LayoutFile=layout.inf
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+Class=Printer
+DriverVer=11/24/2015,1.2.6
+
+[ClassInstall]
+AddReg=ClassAddReg
+DelReg=ClassDelReg
+
+[ClassDelReg]
+HKLM,"System\CurrentControlSet\Services\Class\Printer","NoUseClass"
+
+[ClassAddReg]
+HKR,,,,%CLASSNAME%
+HKR,,Installer,,MSPRINT.DLL
+HKR,,Icon,,-4
+HKR,,NoDisplayClass,,1
+
+;
+; Manufacturer Sections
+;
+
+[Manufacturer]
+"SNBC"=SNBC, NTamd64
+
+;
+; Model Sections 
+;
+
+[SNBC.NTamd64]
+
+"BK-C310(S)" = C3102.NTamd64
+
+
+
+"BK-C310(U)1" = C3102.NTamd64,USBPRINT\"SNBC_BK-C310(U)12E01", "SNBC_BK-C310(U)12E01"
+"BK-C310(U)2" = C3102.NTamd64,USBPRINT\"SNBC_BK-C310(U)22F41", "SNBC_BK-C310(U)22F41"
+"BK-C310(U)3" = C3102.NTamd64,USBPRINT\"SNBC_BK-C310(U)3EF80", "SNBC_BK-C310(U)3EF80"
+"BK-C310(U)4" = C3102.NTamd64,USBPRINT\"SNBC_BK-C310(U)42DC1", "SNBC_BK-C310(U)42DC1"
+
+
+
+;
+; Installer Sections
+;
+; 
+[C3102.NTamd64]
+CopyFiles=@C3102.dll,@C3102.GPD,@C3102UI.INI
+CopyFiles=C3102UI
+DataFile=C3102.GPD
+DataSection=UNIDRV_DATA
+Include=NTPRINT.INF
+Needs  = UNIDRV.OEM,TTFSUB.OEM,UNIDRV_DATA
+
+
+[C3102UI]
+C3102UNI.DLL
+C3102UI.DLL
+
+[DestinationDirs]
+DefaultDestDir=66000
+
+[SourceDisksNames]
+1 = %Floppy%
+
+[SourceDisksFiles]
+C3102.dll    = 1
+C3102.GPD    = 1
+C3102UNI.DLL = 1
+C3102UI.DLL  = 1
+
+
+[Strings]
+SNBC="Shandong NewBeiyang"
+Floppy="SNBC Printer Disk"
+CLASSNAME="Printer"
