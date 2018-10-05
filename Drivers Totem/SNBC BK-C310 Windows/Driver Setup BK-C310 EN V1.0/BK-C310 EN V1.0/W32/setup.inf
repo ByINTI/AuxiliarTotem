@@ -1,0 +1,81 @@
+;
+;	Printer Installation File
+;
+;	 List of supported printers, manufacturers
+;
+
+[Version]
+Signature="$Windows NT$"
+Provider=%BY%
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+Class=Printer
+
+[ClassInstall32.NT]
+AddReg=printer_class_addreg
+
+[printer_class_addreg]
+HKR,,,,%PrinterClassName%
+HKR,,Icon,,"-4"
+HKR,,Installer32,,"ntprint.dll,ClassInstall32"
+HKR,,NoDisplayClass,,1
+HKR,,EnumPropPages32,,"printui.dll,PrinterPropPageProvider"
+
+;
+; Manufacturer section.
+;
+; This section lists all of the manufacturers
+; that we will display in the Dialog box
+;
+
+[Manufacturer]
+"SNBC"
+
+;
+; Model Specifications Section
+;
+
+[SNBC]
+"BK-C310(S)" = C3102.GPD
+
+
+"BK-C310(U)1" = C3102.GPD,USBPRINT\"SNBC_BK-C310(U)12E01", "SNBC_BK-C310(U)12E01"
+"BK-C310(U)2" = C3102.GPD,USBPRINT\"SNBC_BK-C310(U)22F41", "SNBC_BK-C310(U)22F41"
+"BK-C310(U)3" = C3102.GPD,USBPRINT\"SNBC_BK-C310(U)3EF80", "SNBC_BK-C310(U)3EF80"
+"BK-C310(U)4" = C3102.GPD,USBPRINT\"SNBC_BK-C310(U)42DC1", "SNBC_BK-C310(U)42DC1"
+
+
+
+;
+; Installer section(s) referenced above.
+;
+
+[C3102.GPD]
+CopyFiles=@C3102.dll,@C3102.GPD
+CopyFiles=@C3102UI.INI
+CopyFiles=C3102UI
+DataSection=UNIDRV_DATA
+Include=NTPRINT.INF
+Needs=TTFSUB.OEM,UNIDRV_BIDI.OEM
+
+[C3102UI]
+C3102UNI.DLL
+C3102UI.DLL
+
+
+[DestinationDirs]
+DefaultDestDir=66000
+
+[SourceDisksNames.x86]
+1 = %disk1%,,,
+
+[SourceDisksFiles]
+C3102.dll    = 1
+C3102.GPD    = 1
+C3102UI.DLL  = 1
+C3102UNI.DLL = 1 
+C3102UI.INI  = 1
+
+[Strings]
+PrinterClassName="Printers"
+BEIYANG=BeiYang
+disk1="BeiYang Printer Driver Setup Disk"

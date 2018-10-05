@@ -1,0 +1,6 @@
+REM java -cp .;D:\work\build\lib\log4j-1.2.8.jar;D:\work\build\jutil\lib\jutil.jar;D:\work\build\poskbd\lib\poskbd.jar;d:\work\build\lib\new\jpos172.jar;D:\work\build\lib\jsr80.jar;D:\work\build\lib\jsr80_ri.jar;D:\work\build\posj\lib\posj.jar;D:\work\build\jposcommon\lib\jpos-common.jar;d:\work\build\jtux\lib\jtux.jar com.ibm.jpos.tools.sdicc.ControlCenterApp
+REM ;D:\work\build\lib\jcl.jar
+echo off
+java com.ibm.jpos.tools.sdicc.ControlCenterApp
+REM java -cp .;D:\work\build\lib\log4j-1.2.8.jar;D:\work\build\jutil\src;D:\work\build\jutil\test;D:\work\build\poskbd\lib\poskbd.jar;d:\work\build\lib\jpos17.jar;D:\work\build\lib\jsr80.jar;D:\work\build\lib\jsr80_ri.jar;D:\work\build\posj\src;D:\work\build\posj\test;D:\work\build\jposcommon\src;D:\work\build\jposcommon\test;d:\work\build\jtux\src;d:\work\build\jtux\test;D:\work\build\lib\jcl_editor.jar;D:\work\build\lib\jcl.jar com.ibm.jpos.tools.sdicc.ControlCenterApp
+REM java -cp .;D:\work\build\lib\log4j-1.2.8.jar;D:\work\build\jutil\lib\jutil.jar;D:\work\build\poskbd\lib\poskbd.jar;d:\work\build\lib\jpos17.jar;D:\work\build\lib\jsr80.jar;D:\work\build\lib\jsr80_ri.jar;D:\work\build\posj\lib\posj.jar;D:\work\build\jposcommon\lib\jpos-common.jar;d:\work\build\jtux\lib\jtux.jar;D:\work\build\lib\jcl_editor.jar;D:\work\build\lib\jcl.jar com.ibm.jpos.tools.sdicc.ControlCenterApp

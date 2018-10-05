@@ -1,0 +1,62 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: VC_KIOSKDLL - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x804 /fo"Release/VC_KIOSKDLL.res" /d "NDEBUG" "C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\VC_KIOSKDLL.rc"" 
+Creating temporary file "C:\Users\LIANGC~1\AppData\Local\Temp\RSP931F.tmp" with contents
+[
+/nologo /MT /W3 /GX /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /FR"Release/" /Fp"Release/VC_KIOSKDLL.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\LoadDLL.cpp"
+"C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\PrintSamples.cpp"
+"C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\VC_KIOSKDLL.cpp"
+"C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\VC_KIOSKDLLDlg.cpp"
+]
+Creating command line "cl.exe @C:\Users\LIANGC~1\AppData\Local\Temp\RSP931F.tmp" 
+Creating temporary file "C:\Users\LIANGC~1\AppData\Local\Temp\RSP9320.tmp" with contents
+[
+/nologo /MT /W3 /GX /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /FR"Release/" /Fp"Release/VC_KIOSKDLL.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\Users\LIANGC~1\AppData\Local\Temp\RSP9320.tmp" 
+Creating temporary file "C:\Users\LIANGC~1\AppData\Local\Temp\RSP9321.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:no /pdb:"Release/KIOSKDLL_VC.pdb" /machine:I386 /out:"Release\KIOSKDLL_VC.exe" /libpath:"SimpleLogModule.lib ConfigFileINI.lib" 
+".\Release\LoadDLL.obj"
+".\Release\PrintSamples.obj"
+".\Release\StdAfx.obj"
+".\Release\VC_KIOSKDLL.obj"
+".\Release\VC_KIOSKDLLDlg.obj"
+".\Release\VC_KIOSKDLL.res"
+]
+Creating command line "link.exe @C:\Users\LIANGC~1\AppData\Local\Temp\RSP9321.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+LoadDLL.cpp
+PrintSamples.cpp
+C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\PrintSamples.cpp(65) : warning C4030: first formal parameter list longer than the second list
+VC_KIOSKDLL.cpp
+VC_KIOSKDLLDlg.cpp
+C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\VC_KIOSKDLLDlg.cpp(624) : warning C4244: 'argument' : conversion from 'unsigned long' to 'unsigned short', possible loss of data
+C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\VC_KIOSKDLLDlg.cpp(1662) : warning C4305: '=' : truncation from 'const int' to 'char'
+C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\VC_KIOSKDLLDlg.cpp(1662) : warning C4309: '=' : truncation of constant value
+C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\VC_KIOSKDLLDlg.cpp(1663) : warning C4305: '=' : truncation from 'const int' to 'char'
+C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\VC_KIOSKDLLDlg.cpp(1663) : warning C4309: '=' : truncation of constant value
+Generating Code...
+C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\VC_KIOSKDLLDlg.cpp(1525) : warning C4715: 'CVC_KIOSKDLLDlg::OnHelpInfo' : not all control paths return a value
+C:\Users\liangchenying\Desktop\KIOSK\KIOSKDLL SV1-17-01\KIOSKDLLDemo Souce\KIOSKDLLDEMO_VC\LoadDLL.cpp(607) : warning C4715: 'LoadKioskdll' : not all control paths return a value
+Linking...
+
+
+
+<h3>Results</h3>
+KIOSKDLL_VC.exe - 0 error(s), 8 warning(s)
+</pre>
+</body>
+</html>

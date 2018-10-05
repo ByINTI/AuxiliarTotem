@@ -1,0 +1,55 @@
+###############################################################################
+#
+# Keys Translation File
+#
+# This file contains examples of the keyboard remapping capabilities. Refer to
+# the User's Guide for more information in Chapter 4: Section JavaPOS -
+# POSKeyboard.
+#
+
+###############################################################################
+# 
+# Single Mapping 1-1 correspondence              
+#
+# This is a simple remapping that replaces keyboard code 0x2B with virtual
+# scancode 0x121
+#
+
+0x121 0x2B
+
+###############################################################################
+#
+# Multiple mapping
+#
+# These lines show how multiple remapping is encoded. In the 1st and 2nd lines,
+# the first scancode that appears on each line is the virtual scancode that
+# will be fired. The sequences that will fire these virtual scancodes are the
+# rest of the values on each line. If you wish to fire more than one virtual
+# scan code you can group several scancodes within square brackets, and place
+# them first in the line, as in the 3rd and 4th lines in this section.
+#
+
+0x123 0x5A 0x7B
+0x17F 0x3F 0x6E 0x0E
+
+[0x3A 0x68 0x3A] 0x5C
+[0x7F 0x7E] 0x7E 0x7F
+
+###############################################################################
+#
+# Double key mapping
+#
+# When you cover two keys with a single key cap, you can configure them here
+# to behave as a single key, this means they will only fire one event instead
+# of two even if you press both keys. To configure double-keys the line must
+# begin with value 0xFF (or equivlalents), then the next value should be the
+# value to fire, and the last two values should be the scancodes that are
+# fired by the keys you wish behave as a single key. The example here
+# configures the two keys corresponding to the ENTER key in the numeric pad to
+# fire the scancode asociated to the other ENTER key. Refer to the User's
+# Guide for more information in Chapter 4: Section JavaPOS - POSKeyboard.
+#
+
+0x0FF 0x4A 0x8E 0xBE
+
+

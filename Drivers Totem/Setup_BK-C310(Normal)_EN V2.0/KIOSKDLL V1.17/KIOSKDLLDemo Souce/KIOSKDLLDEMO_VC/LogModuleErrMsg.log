@@ -1,0 +1,5 @@
+2016-06-15 11:13:47.893  Errlog:SimpleLogModule.cpp(175) LOG_MODULE_INIT log_file_name not set, use default name default.log
+2016-06-15 11:13:47.893  Errlog:SimpleLogModule.cpp(197) LOG_MODULE_INIT log level not set, use default level Log_Level_Disable
+2016-06-15 11:13:47.894  Errlog:SimpleLogModule.cpp(225) LOG_MODULE_INIT log_mode not set, use default mode Log_Mode_Simple
+2016-06-15 11:13:47.894  Errlog:SimpleLogModule.cpp(246) LOG_MODULE_INIT max_file_size is 0 or not set, use default size(20M)
+2016-06-15 11:13:47.895  Errlog:SimpleLogModule.cpp(273) LOG_MODULE_INIT log format not set, use default format %D%T%E%N

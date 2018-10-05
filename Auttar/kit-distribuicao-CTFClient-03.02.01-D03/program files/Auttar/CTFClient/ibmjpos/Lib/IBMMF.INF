@@ -1,0 +1,120 @@
+;------------------------------------------------------------------------------
+;
+; Copyright (c) IBM Corporation 2002,2003
+; Module Name: IBMMF.inf
+; Description: This INF file will configure the Multi I/O ports on the 
+;              SurePos 32x. 
+;
+;------------------------------------------------------------------------------
+
+[Version]
+Signature = "$Windows NT$"
+Provider  = %IBM%
+Class     = MultiFunction
+ClassGUID = {4D36E971-E325-11CE-BFC1-08002BE10318}
+DriverVer = 06/17/2003,1.01.0002
+
+[DestinationDirs]
+DefaultDestDir  = 11    ;System directory 
+Inf.NT.Copy     = 17    ;INF Directory 
+
+;--- Device Install Section ---------------------------------------------------
+[SourceDisksFiles]
+IBMMF.inf=1
+IBMCD.inf=1
+IBMPorts.inf=1
+IBMNULL.inf=1
+IBMUNUS.inf=1
+
+[SourceDisksNames]
+1=%DiskName%,,
+
+[ClassInstall32]
+AddReg = ClassInstall32.AddReg
+
+[ClassInstall32.AddReg]
+HKR,,,,%ClassName%
+
+[Manufacturer]
+%IBM% = IBM_SP32x, NT.5.1
+
+[IBM_SP32x]
+%SP32xMF.DRVDESC% = SP32x_0B2S.mf, PCI\VEN_9710&DEV_9835&SUBSYS_00021000&REV_01
+%SP32xMF.DRVDESC% = SP32x_1P2S.mf, PCI\VEN_9710&DEV_9835&SUBSYS_02991014&REV_01
+
+[IBM_SP32x.NT.5.1]
+%SP32xMF.DRVDESC% = SP32x_0U2S.mf, PCI\VEN_9710&DEV_9835&SUBSYS_00021000&REV_01
+%SP32xMF.DRVDESC% = SP32x_1P2S.mf, PCI\VEN_9710&DEV_9835&SUBSYS_02991014&REV_01
+
+
+[SP32x_0B2S.mf]
+CopyFiles = Inf.NT.Copy
+
+[SP32x_0U2S.mf]
+CopyFiles = Inf.NT.Copy
+
+[SP32x_1P2S.mf]
+CopyFiles = Inf.NT.Copy
+
+
+[SP32x_0B2S.mf.HW]
+AddReg = SP32x_0B2S.mf.RegHW
+
+[SP32x_0U2S.mf.HW]
+AddReg = SP32x_0U2S.mf.RegHW
+
+[SP32x_1P2S.mf.HW]
+AddReg = SP32x_1P2S.mf.RegHW
+
+
+[SP32x_0B2S.mf.RegHW]
+HKR,Child0000,HardwareID,,MF\PCI1014_COM
+HKR,Child0000,ResourceMap,1,02,0C
+HKR,Child0001,HardwareID,,MF\PCI1014_COM
+HKR,Child0001,ResourceMap,1,00,0C
+HKR,Child0002,HardwareID,,MF\PCI1014_BRIDGE
+HKR,Child0002,ResourceMap,1,04,0C
+
+[SP32x_0U2S.mf.RegHW]
+HKR,Child0000,HardwareID,,MF\PCI1014_COM
+HKR,Child0000,ResourceMap,1,02,0C
+HKR,Child0001,HardwareID,,MF\PCI1014_COM
+HKR,Child0001,ResourceMap,1,00,0C
+HKR,Child0002,HardwareID,,MF\PCI1014_UNUSABLE
+HKR,Child0002,ResourceMap,1,04,06,0C
+
+[SP32x_1P2S.mf.RegHW]
+HKR,Child0000,HardwareID,,MF\PCI1014_COM
+HKR,Child0000,ResourceMap,1,02,0C
+HKR,Child0001,HardwareID,,MF\PCI1014_COM
+HKR,Child0001,ResourceMap,1,00,0C
+HKR,Child0002,HardwareID,,MF\PCI1014_CDP
+HKR,Child0002,ResourceMap,1,04
+
+;--- Services -----------------------------------------------------------------
+[SP32x_0B2S.mf.Services]
+Include = mf.inf
+Needs   = MFINSTALL.mf.services
+
+[SP32x_0U2S.mf.Services]
+Include = mf.inf
+Needs   = MFINSTALL.mf.services
+
+[SP32x_1P2S.mf.Services]
+Include = mf.inf
+Needs   = MFINSTALL.mf.services
+
+[Inf.NT.Copy]
+IBMMF.inf
+IBMCD.inf
+IBMPorts.inf
+IBMNULL.inf
+IBMUNUS.inf
+
+[Strings]
+IBM             = "IBM Corporation"
+ClassName       = "Multifunction"
+ComPortName     = "IBM SurePOS 32x PCI Serial Port"
+SP32xMF.DRVDESC = "IBM SurePOS 32x Multi-I/O Controller"
+DiskName        = "IBM SurePOS 32x Multi-IO Install Disk"
+

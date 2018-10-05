@@ -1,0 +1,352 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\VC_KIOSKDLL.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\VC_KIOSKDLL.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_VC_KIOSKDLL_DIALOG DIALOGEX 1, 0, 517, 291
+STYLE DS_MODALFRAME | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_STATICEDGE | WS_EX_APPWINDOW
+CAPTION "KIOSKDLLDEMO_VC"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Port Selecting",IDC_STATIC,11,7,233,41
+    CONTROL         "COM",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    32,22,45,16
+    CONTROL         "LPT",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,85,21,42,17
+    CONTROL         "USB",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,139,23,43,
+                    13
+    CONTROL         "Driver",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,187,21,
+                    49,17
+    GROUPBOX        "Port Setting",IDC_STATIC,10,50,235,185
+    RTEXT           "COM Name:",IDC_STATIC,11,67,59,10
+    CONTROL         "",IDC_COMBOBOXEX1,"ComboBoxEx32",CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP,75,63,48,104
+    LTEXT           "Baudrate:",IDC_STATIC,35,91,39,8
+    CONTROL         "",IDC_COMBOBOXEX2,"ComboBoxEx32",CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP,75,88,48,96
+    RTEXT           "Data Bits:",IDC_STATIC,26,115,45,8
+    CONTROL         "",IDC_COMBOBOXEX3,"ComboBoxEx32",CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP,75,111,48,77
+    RTEXT           "Parity:",IDC_STATIC,140,65,47,9
+    CONTROL         "",IDC_COMBOBOXEX4,"ComboBoxEx32",CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP,191,62,48,68
+    RTEXT           "Stop Bits:",IDC_STATIC,142,88,45,8
+    CONTROL         "",IDC_COMBOBOXEX5,"ComboBoxEx32",CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP,191,87,48,67
+    RTEXT           "Flow Control:",IDC_STATIC,130,116,57,8
+    CONTROL         "",IDC_COMBOBOXEX6,"ComboBoxEx32",CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP,191,111,48,55
+    RTEXT           "LPT Address:",IDC_STATIC,15,139,56,10
+    CONTROL         "",IDC_COMBOBOXEX7,"ComboBoxEx32",CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP,75,136,48,80
+    RTEXT           "ReadTimeOut:",IDC_STATIC,13,165,58,8
+    EDITTEXT        IDC_EDIT2,75,162,47,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "( Millisecond )",IDC_STATIC,125,165,61,8
+    RTEXT           "WriteTimeOut:",IDC_STATIC,11,191,60,8
+    EDITTEXT        IDC_EDIT4,75,188,47,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "( Millisecond )",IDC_STATIC,125,191,61,8
+    RTEXT           "Driver Name:",IDC_STATIC,19,215,52,8
+    COMBOBOX        IDC_COMBO1,75,212,110,110,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "",IDC_STATIC,249,7,132,227
+    GROUPBOX        "Print Mode Selecting",IDC_STATIC,254,14,123,33
+    CONTROL         "Standard",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,269,28,48,10
+    CONTROL         "Page",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,325,28,32,
+                    10
+    GROUPBOX        "Paper Out Mode Selecting",IDC_STATIC,254,50,123,35
+    CONTROL         "Presenter",IDC_RADIO8,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,269,66,47,8
+    CONTROL         "Bundler",IDC_RADIO9,"Button",BS_AUTORADIOBUTTON,326,66,
+                    44,8
+    GROUPBOX        "Presenter Setting",IDC_STATIC,254,88,123,59
+    CONTROL         "Retraction on",IDC_RADIO14,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,270,99,68,10
+    CONTROL         "Paper Forward",IDC_RADIO15,"Button",BS_AUTORADIOBUTTON,
+                    270,114,67,10
+    CONTROL         "Paper Hold",IDC_RADIO16,"Button",BS_AUTORADIOBUTTON,270,
+                    127,56,10
+    GROUPBOX        "Bundler Setting",IDC_STATIC,254,150,123,37
+    CONTROL         "Retract",IDC_RADIO11,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,270,168,44,10
+    CONTROL         "Present",IDC_RADIO10,"Button",BS_AUTORADIOBUTTON,326,
+                    168,50,10
+    LTEXT           "Page width:",IDC_STATIC,269,196,53,8
+    CONTROL         "",IDC_COMBOBOXEX10,"ComboBoxEx32",CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP,324,193,48,84
+    LTEXT           "Resolution:",IDC_STATIC,269,218,54,13
+    CONTROL         "",IDC_COMBOBOXEX9,"ComboBoxEx32",CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP,324,214,48,60
+    GROUPBOX        "Status Monitor",IDC_STATIC,384,6,124,228
+    EDITTEXT        IDC_EDIT3,390,18,114,165,ES_MULTILINE | ES_READONLY | 
+                    WS_VSCROLL
+    PUSHBUTTON      "Start",IDC_BUTTON1,417,189,55,15
+    PUSHBUTTON      "Stop",IDC_BUTTON4,417,211,56,15
+    CONTROL         "&Sending data to file but not to port.",IDC_CHECK3,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,241,167,10
+    PUSHBUTTON      "&Open Port",IDC_BUTTON3,14,262,50,16
+    PUSHBUTTON      "&Query Status",IDC_BUTTON5,72,262,55,16
+    EDITTEXT        IDC_EDIT1,136,262,182,16,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "&Print",IDC_BUTTON2,327,262,56,16
+    PUSHBUTTON      "C&lose Port",IDC_BUTTON7,391,262,55,16
+    PUSHBUTTON      "&Exit",IDCANCEL,451,262,53,15
+    PUSHBUTTON      "PrintPDF417",IDC_BTN_PDF417,328,240,56,16
+    PUSHBUTTON      "PrintSample",IDC_BTN_SAMPLE,391,240,56,16
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,1,6,0
+ PRODUCTVERSION 1,1,6,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "\0"
+            VALUE "FileVersion", "1, 1, 6, 0\0"
+            VALUE "InternalName", "KIOSKDLLDEMO_VC\0"
+            VALUE "LegalCopyright", "Copyright(C) 2015\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "KIOSKDLLDEMO_VC.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "KIOSKDLLDEMO_VC\0"
+            VALUE "ProductVersion", "1, 1, 6, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_VC_KIOSKDLL_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 10
+        RIGHTMARGIN, 514
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 284
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_VC_KIOSKDLL_DIALOG DLGINIT
+BEGIN
+    IDC_COMBOBOXEX1, 0x1234, 5, 0
+0x4f43, 0x314d, "\000" 
+    IDC_COMBOBOXEX1, 0x1234, 5, 0
+0x4f43, 0x324d, "\000" 
+    IDC_COMBOBOXEX1, 0x1234, 5, 0
+0x4f43, 0x334d, "\000" 
+    IDC_COMBOBOXEX1, 0x1234, 5, 0
+0x4f43, 0x344d, "\000" 
+    IDC_COMBOBOXEX1, 0x1234, 5, 0
+0x4f43, 0x354d, "\000" 
+    IDC_COMBOBOXEX1, 0x1234, 5, 0
+0x4f43, 0x364d, "\000" 
+    IDC_COMBOBOXEX1, 0x1234, 5, 0
+0x4f43, 0x374d, "\000" 
+    IDC_COMBOBOXEX1, 0x1234, 5, 0
+0x4f43, 0x384d, "\000" 
+    IDC_COMBOBOXEX1, 0x1234, 5, 0
+0x4f43, 0x394d, "\000" 
+    IDC_COMBOBOXEX1, 0x1234, 6, 0
+0x4f43, 0x314d, 0x0030, 
+    IDC_COMBOBOXEX2, 0x1234, 5, 0
+0x3432, 0x3030, "\000" 
+    IDC_COMBOBOXEX2, 0x1234, 5, 0
+0x3834, 0x3030, "\000" 
+    IDC_COMBOBOXEX2, 0x1234, 5, 0
+0x3639, 0x3030, "\000" 
+    IDC_COMBOBOXEX2, 0x1234, 6, 0
+0x3931, 0x3032, 0x0030, 
+    IDC_COMBOBOXEX2, 0x1234, 6, 0
+0x3833, 0x3034, 0x0030, 
+    IDC_COMBOBOXEX2, 0x1234, 6, 0
+0x3735, 0x3036, 0x0030, 
+    IDC_COMBOBOXEX2, 0x1234, 7, 0
+0x3131, 0x3235, 0x3030, "\000" 
+    IDC_COMBOBOXEX3, 0x1234, 2, 0
+0x0037, 
+    IDC_COMBOBOXEX3, 0x1234, 2, 0
+0x0038, 
+    IDC_COMBOBOXEX4, 0x1234, 5, 0
+0x4f4e, 0x454e, "\000" 
+    IDC_COMBOBOXEX4, 0x1234, 4, 0
+0x444f, 0x0044, 
+    IDC_COMBOBOXEX4, 0x1234, 5, 0
+0x5645, 0x4e45, "\000" 
+    IDC_COMBOBOXEX4, 0x1234, 5, 0
+0x414d, 0x4b52, "\000" 
+    IDC_COMBOBOXEX4, 0x1234, 6, 0
+0x5053, 0x4341, 0x0045, 
+    IDC_COMBOBOXEX5, 0x1234, 2, 0
+0x0031, 
+    IDC_COMBOBOXEX5, 0x1234, 2, 0
+0x0032, 
+    IDC_COMBOBOXEX6, 0x1234, 8, 0
+0x5444, 0x2f52, 0x5344, 0x0052, 
+    IDC_COMBOBOXEX7, 0x1234, 7, 0
+0x7830, 0x3330, 0x3837, "\000" 
+    IDC_COMBOBOXEX7, 0x1234, 7, 0
+0x7830, 0x3230, 0x3837, "\000" 
+    IDC_COMBO1, 0x403, 1, 0
+"\000" 
+    IDC_COMBOBOXEX10, 0x1234, 5, 0
+0x3635, 0x6d6d, "\000" 
+    IDC_COMBOBOXEX10, 0x1234, 5, 0
+0x3038, 0x6d6d, "\000" 
+    IDC_COMBOBOXEX10, 0x1234, 6, 0
+0x3132, 0x6d30, 0x006d, 
+    IDC_COMBOBOXEX9, 0x1234, 7, 0
+0x3032, 0x6433, 0x6970, "\000" 
+    IDC_COMBOBOXEX9, 0x1234, 7, 0
+0x3033, 0x6430, 0x6970, "\000" 
+    0
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\VC_KIOSKDLL.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
