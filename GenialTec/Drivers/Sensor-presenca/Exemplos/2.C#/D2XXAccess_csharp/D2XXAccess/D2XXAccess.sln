@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{20D4826A-C6FA-45DB-90F4-C717570B9F32}") = "D2XXAccess", "D2XXAccess\D2XXAccess.csdproj", "{6759124E-8D4E-4A46-8F6E-1811A0B15AB5}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{6759124E-8D4E-4A46-8F6E-1811A0B15AB5}.Debug.ActiveCfg = Debug|Windows CE
+		{6759124E-8D4E-4A46-8F6E-1811A0B15AB5}.Debug.Build.0 = Debug|Windows CE
+		{6759124E-8D4E-4A46-8F6E-1811A0B15AB5}.Debug.Deploy.0 = Debug|Windows CE
+		{6759124E-8D4E-4A46-8F6E-1811A0B15AB5}.Release.ActiveCfg = Release|Windows CE
+		{6759124E-8D4E-4A46-8F6E-1811A0B15AB5}.Release.Build.0 = Release|Windows CE
+		{6759124E-8D4E-4A46-8F6E-1811A0B15AB5}.Release.Deploy.0 = Release|Windows CE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

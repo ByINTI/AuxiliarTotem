@@ -1,0 +1,17 @@
+Driver de impressão para LINUX da impressora IM4X3T desenvolvido e testado nas Distribuições Linux(32 bits):
+
+- Ubuntu versões 9.04, 10.04 e 11.04; 
+
+Modo de instalação: 
+A instalação é bastante simples, basta descompactá-lo em um diretório local e 
+executá-lo da seguinte maneira: 
+
+tar -vzxf Driver_Linux_IM433_rev3.0.tar.gz 
+sudo ./im423t_install.ubuntu 
+
+Obs.: talvez seja necessário adicionar a permissão de execução: 
+
+chmod a+x im423t_install.ubuntu 
+
+Esse driver de impressão foi desenvolvido para trabalhar com o servidor CUPS, 
+presente na maioria das distribuições Linux disponível.

@@ -1,0 +1,23 @@
+LIBRARY  "AID"
+DESCRIPTION  'AID'
+
+EXPORTS
+  FT_ListDevices
+  FT_Open
+  FT_Close
+  FT_Read
+  FT_Write
+  FT_PurgeRX
+  FT_PurgeTX
+  FT_GetQueueStatus
+  FT_GetStatus
+  FT_EE_Program
+  FT_EE_ProgramToDefault
+  FT_EE_Read
+  FT_GetLatencyTimer
+  FT_SetLatencyTimer
+  FT_SetBitMode
+  FT_SetUSBParameters
+  KCAN_Send
+  KCAN_Receive
+  KCAN_Init

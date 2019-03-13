@@ -1,0 +1,18 @@
+Versão 1.2.0.7 do driver de impressão único para toda a linha de impressoras DIEBOLD para:
+
+- Windows Vista (64 bits)
+- Windows 7 (64 bits) 
+
+Esse executável somente irá copiar os drivers para a pasta indicada, portanto a instalação deverá ser realizada manualmente através do Painel de Controle das "Impressoras e Aparelhos de Fax". Para fazer a instalação:
+
+1. Rode o DieboldPrinters-1.2.0.7-beta2-x64.exe e aponte corretamente a pasta onde os arquivos serão copiados;
+2. Clique em "Iniciar"->"Configurações"->"Impressoras e Aparelhos de Fax";
+3. Clique em "Adicionar Impressora" e siga as instruções;
+4. Você terá que optar entre os arquivos:
+- OEMPRINTA.INF: Para impressão de Alta Qualidade, com eventual redução na velocidade de impressão;
+- OEMPRINTB.INF: Para impressão de Alta Velocidade, com eventual redução na qualidade de impressão;
+5. Caso o Plug&Play do Windows seja ativado ao ligar a impressora, indique a pasta onde os arquivos foram copiados.
+
+OBS:
+Para IM433TP, IM433TS, IM433TD, IM423TP ou IM423TS escolha "Diebold Procomp IM4X3T_B" ou "Diebold Procomp IM4X3T_A"
+

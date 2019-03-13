@@ -1,0 +1,44 @@
+<html>
+<body>
+<pre>
+<h1>Erstellungsprotokoll</h1>
+<h3>
+--------------------Konfiguration: AID - Win32 Release--------------------
+</h3>
+<h3>Befehlszeilen</h3>
+Erstellen der temporären Datei  "C:\WINDOWS\TEMP\RSPE2C3.TMP" mit Inhalten
+[
+/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "AID_EXPORTS" /Fp"Release/AID.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\AID\AID.cpp"
+]
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSPE2C3.TMP" 
+Erstellen der temporären Datei  "C:\WINDOWS\TEMP\RSPE2C4.TMP" mit Inhalten
+[
+/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "AID_EXPORTS" /Fp"Release/AID.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\AID\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSPE2C4.TMP" 
+Erstellen der temporären Datei  "C:\WINDOWS\TEMP\RSPE2C5.TMP" mit Inhalten
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"Release/AID.pdb" /machine:I386 /def:".\AID.def" /out:"Release/AID.dll" /implib:"Release/AID.lib" 
+.\Release\AID.obj
+.\Release\StdAfx.obj
+]
+Erstellen der Befehlzeile "link.exe @C:\WINDOWS\TEMP\RSPE2C5.TMP"
+<h3>Ausgabefenster</h3>
+Kompilierung läuft...
+StdAfx.cpp
+Kompilierung läuft...
+AID.cpp
+C:\AID\AID.cpp(384) : warning C4101: 'i' : Unreferenzierte lokale Variable
+C:\AID\AID.cpp(428) : warning C4101: 'rx_cnt' : Unreferenzierte lokale Variable
+Linker-Vorgang läuft...
+   Bibliothek Release/AID.lib und Objekt Release/AID.exp wird erstellt
+
+
+
+<h3>Ergebnisse</h3>
+AID.dll - 0 Fehler, 2 Warnung(en)
+</pre>
+</body>
+</html>

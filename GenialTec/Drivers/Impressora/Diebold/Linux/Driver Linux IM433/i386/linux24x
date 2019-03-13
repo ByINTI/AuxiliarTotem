@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#########################################################################
+#                                                                       #
+#              D I E B O L D   P R I N T E R   I M 4 3 3 T              #
+#                                                                       #
+#########################################################################
+
+
+#linux 2.4.x
+
+
+dialog 	--stdout					\
+	--title 'Instalação Driver p/ Kernell 2.4.x'	\
+	--infobox '\nInstalando arquivos no sistema...'		\
+	6 40
+
+
+tar -zxf linux24x.tar.gz -C /
+
+
+exit 0 

@@ -1,0 +1,1 @@
+serial:/dev/ttyUSB0?baud=57600+bits=8+parity=none+flow=hard

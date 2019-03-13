@@ -1,0 +1,464 @@
+#!/bin/bash
+
+tmpfile=$(mktemp /tmp/.im423t.XXXXXX)
+msgs=$(mktemp /tmp/.im423t.XXXXXX)
+
+# Used on more then one place now.
+packages_8="psutils-1.17-1U80_1cl.i386.rpm xdialog-2.1.1-1U80_1cl.i386.rpm im423t-4.5-1cl8.i386.rpm im423t-ppd-4.5-1cl8.i386.rpm"
+packages_9="psutils-1.17-1U90_1cl.i386.rpm Xdialog-2.0.6-19584cl.i386.rpm  im423t-4.5-1cl9.i386.rpm im423t-ppd-4.5-1cl9.i386.rpm"
+packages_10="xdialog-2.1.1-47398cl.i386.rpm xdialog-i18n-pt_BR-2.1.1-47398cl.i386.rpm im423t-4.5-1cl10.i386.rpm im423t-ppd-4.5-1cl10.i386.rpm"
+
+install_dialog()
+{
+	echo "Instalando o pacote dialog, aguarde."
+	rpm -ivh cl$distro/dialog-0.9*.rpm
+	if [ "$?" -ne "0" ]; then
+		echo "Falha ao tentar instalar o dialog."
+		return 1
+	fi
+	return 0
+}
+
+dialog()
+{
+	widgety=$((${max_y:-8}-8))
+	if [ "$4" -gt 2 ]; then
+		widgetx=$((${max_x:-80}/2-$4/2))
+	else
+		widgetx=$((${max_x:-80}/2-30))
+	fi
+
+	msg_len=$((${max_x:-12}-12))
+	if [ "0$max_y" -gt 0 ]; then
+		msg_num=$(($widgety-5))
+	else
+		msg_num=11
+	fi
+	tailmsg="$(tail -n $msg_num $msgs | sed "s/^\(.\{$msg_len\}\).*/\1(...)/")"
+	tailh=$(($msg_num+2))
+	tailw=$((${max_x:-2}-2))
+	tailx=2
+	taily=2
+
+	/usr/bin/dialog --backtitle "Diebold Procomp / Driver versão 4.5" \
+			--separate-widget "" \
+			--stdout \
+			--begin $taily $tailx \
+			--title "Mensagens anteriores:" \
+			--cr-wrap \
+			--no-shadow \
+			--infobox "$tailmsg" $tailh $tailw \
+		--and-widget ${TITLE+--title $TITLE} \
+			--begin $widgety $widgetx \
+			${1+"$@"}
+
+	return $?
+}
+
+info()
+{
+	local ret
+	dialog --infobox "$@" 7 50
+	ret=$?
+	echo "$@" >> $msgs
+	return $?
+}
+
+msgbox()
+{
+	local ret
+	dialog --msgbox "$@" 7 50
+	ret=$?
+	echo "$@" >> $msgs
+	return $ret
+}
+
+yesno()
+{
+	dialog --yesno "$@" 7 50
+	local ret=$?
+	echo -n "$@ " >> $msgs
+	if [  "$ret" -eq "0" ]; then
+		echo "Yes" >> $msgs
+	else
+		echo "No" >> $msgs
+	fi
+	return $ret
+}
+
+textbox()
+{
+	local f=${1:-$tmpfile}
+	local x=$3
+	local y=$2
+	if [ "0$x" -eq 0 -a "0$y" -eq 0 ]; then
+		y=$((max_y-4))
+		x=$((max_x-2))
+	fi
+	dialog --begin \
+		$((${max_y:-25}/2-$y/2)) \
+		$((${max_x:-80}/2-$x/2+1)) \
+		--textbox $f $y $x
+	cat $f >> $msgs
+}
+
+checklist()
+{
+	local x=$3
+	local y=$2
+	local selected
+	if [ "0$x" -eq 0 -a "0$y" -eq 0 ]; then
+		y=$((max_y-4))
+		x=$((max_x-2))
+	fi
+	local txt=$1
+	shift; shift; shift
+	selected=$(dialog --no-cancel --begin \
+		$((${max_y:-25}/2-$y/2)) \
+		$((${max_x:-80}/2-$x/2+1)) \
+		--checklist "$txt" "$y" "$x" $((max_y-14)) ${1+"$@"})
+	local ret=$?
+	echo "$txt" >> $msgs
+	echo "$selected" >> $msgs
+	echo "$selected" | sed 's,^[ 	]*,,;s,[ 	]*$,,'
+	return $ret
+}
+
+menu()
+{
+	local x=$3
+	local y=$2
+	local selected
+	if [ "0$x" -eq 0 -a "0$y" -eq 0 ]; then
+		y=$((max_y-4))
+		x=$((max_x-2))
+	fi
+	local txt=$1
+	shift; shift; shift
+	selected=$(dialog --no-cancel --begin \
+		$((${max_y:-25}/2-$y/2)) \
+		$((${max_x:-80}/2-$x/2+1)) \
+		--menu "$txt" "$y" "$x" $((max_y-14)) ${1+"$@"})
+	local ret=$?
+	echo -n "$txt" >> $msgs
+	echo "$selected" >> $msgs
+	echo "$selected" | sed 's,^[ 	]*,,;s,[ 	]*$,,'
+	return $ret
+}
+
+
+
+
+
+install_packages()
+{
+	info "Instalando driver, aguarde..."
+
+	if [ "$distro" -eq "10" ]; then
+		if ! rpm -q cups-serial >& /dev/null; then
+			yesno "Aviso: O pacote cups-serial precisa ser instalado manualmente para que o suporte a impressoras seriais seja habilitado. Deseja sair do instalador para instalar o pacote?" && exit 0
+		fi
+	fi
+
+	rpm -U --force $(eval echo \$packages_$distro | sed "s,\(^\| \), cl$distro/,g") >& $tmpfile
+	if [ "$?" -ne "0" ]; then
+		msgbox "Erro ao instalar pacotes. Pressione enter para ver a saída do comando."
+		textbox $tmpfile
+		return 1
+	fi
+
+	return 0
+}
+
+cups()
+{
+	if ! /etc/rc.d/init.d/cups status >& /dev/null; then
+		info "Iniciando o servidor CUPS"
+		/etc/rc.d/init.d/cups start >& $tmpfile
+		if [ "$?" -ne "0" ]; then
+			msgbox "Falha ao inicializar o servidor CUPS. Pressione enter para ver o log."
+			textbox $tmpfile
+			return 1
+		fi
+		info "Esperando CUPS..."
+		sleep 4
+	else
+		info "Reiniciando o servidor CUPS"
+		/etc/rc.d/init.d/cups restart >& $tmpfile
+		if [ "$?" -ne "0" ]; then
+			msgbox "Falha ao inicializar o servidor CUPS. Pressione enter para ver o log."
+			textbox $tmpfile
+			return 1
+		fi
+		info "Esperando CUPS..."
+		sleep 4
+	fi
+	chkconfig cups on
+}
+
+seleciona_devices()
+{
+	local devices devices2
+	local d
+	devices=$(checklist "Selecione os devices a serem configurados:" 0 0 \
+		$(
+		for l in /dev/lp?; do echo "parallel:$l" "Paralela" OFF; done
+		for s in /dev/ttyS?; do echo "serial:$s" "Serial" OFF; done
+		for u in /dev/usb/lp?; do echo "usb:$u" "USB" OFF; done
+		))
+	devices=$(echo $(eval echo $devices))
+	devices2=
+	for d in $devices; do
+		if [ "${d//:*}" = "serial" ]; then
+			local baudrate parity databits flow
+			TITLE="$d"
+			baudrate=$(menu "Selecione a velocidade:" 0 0 1200 "" 2400 "" 4800 "" 9600 "" 19200 "" 38400 "" 57600 "" 115200 "")
+			parity=$(menu "Selecione a paridade:" 0 0 None Nenhuma Even Par Odd Impar)
+			databits=$(menu "Selecione o número de bits:" 0 0 7 "" 8 "")
+			flow=$(menu "Selecione o controle de fluxo:" 0 0 None Nenhum "Soft" "XON/XOFF Software" "Hard" "RTS/CTS Hardware" "dtrdsr" "DTR/DSR Hardware")
+			TITLE=
+			echo "$d?baud=$baudrate+bits=$databits+parity=$parity+flow=$flow"
+		else
+			echo "$d"
+		fi
+	done
+	return $?
+}
+
+probe()
+{
+	local device
+	devices=
+	while [ -z "$devices" ]; do
+		info "Localizando a(s) impressora(s)..."
+		info "Forçando probe da porta paralela."
+		rmmod lp parport_pc parport >& /dev/null
+		devices=$(
+			for backend in /usr/lib/cups/backend/{parallel,usb}; do
+			info "Probe utilizando backend ${backend##*/}"
+			device=$($backend 2> /dev/null | sed -ne 's,direct \([^ ]\+\) .*IM4[23]3T.*,\1,p')
+			if [ -n "$device" ]; then
+				info "Localizada impressora em $device"
+				echo "$device"
+			fi
+		done)
+
+		if [ -z "$devices" ]; then
+			if ! yesno "Nenhuma impressora foi localizada. Certifique-se que ela está ligada e pressione enter para tentar novamente.";
+				then
+				return 0
+			fi
+		fi
+	done
+
+	echo "Impressoras detectadas:" >> $msgs
+	for device in $devices; do
+		echo "	$device" >> $msgs
+	done
+
+	devices=$(checklist "Selecione as impressoras que deseja configurar." 0 0 \
+		$(for device in $devices; do echo "$device"; echo "Detectada"; echo OFF; done) \
+	)
+	devices=$(eval echo $devices)
+	devices=$(echo "$devices" | sed 's,[ 	]\+,\n,g' | sort -u)
+
+	if [ -n "$devices" ]; then
+		echo "Impressoras selecionadas: " >> $msgs
+		for device in $devices; do
+			echo "	$device" >> $msgs
+		done
+		configure
+	else
+		echo "Nenhuma impressora selecionada." >> $msgs
+	fi
+
+	return 0
+}
+
+configure()
+{
+	local i ok showlog device_ok
+
+	i=$(ls /etc/cups/ppd/im423t_*.ppd | sed 's,.*im423t_\(.*\).ppd,\1,' | sort -n -r | head -n 1)
+	if [ -z "$i" ]; then
+		i=1
+	else
+		i=$((i+1))
+	fi
+
+	ok=
+	names_ok=
+	showlog=0
+
+	for device in $devices; do
+		name=im423t_$i
+
+		info "Configurando a impressora $name em $device, aguarde..."
+		echo "Alguns erros aconteceram enquanto processava a impressora $name ($device):" > $tmpfile
+		echo " " >> $tmpfile
+		echo "$name ($device):" >> $tmpfile
+
+		/usr/sbin/lpadmin -p "$name" -v "$device" -m DieboldProcomp/im423t.ppd.gz 2>> $tmpfile
+
+		if [ "$?" -ne "0" ]; then
+			info "Falha ao configurar impressora em $device."
+			showlog=1
+		else
+			msgbox "$device configurado como $name."
+			device_ok="$device_ok $device"
+			/usr/bin/enable $name || msgbox "Falha ao habilitar as impressoras."
+			/usr/sbin/accept $name || msgbox "Falha ao deixar as impressoras aceitarem trabalhos."
+			testpage $name
+			i=$(($i+1))
+			ok="$ok $device"
+			names_ok="$names_ok $name"
+		fi
+
+		echo " " >> $tmpfile
+	done
+
+	if [ "$showlog" -eq "1" ]; then
+		dialog --textbox $tmpfile 0 0
+	fi
+
+	devices=$device_ok
+	if [ "$i" -gt "1" ]; then
+		msgbox "Impressora(s) configuradas(s) em: $ok"
+	fi
+}
+
+force()
+{
+	if [ -n "$devices" ]; then
+		return 0
+	fi
+
+	if yesno "Deseja instalar manualmente?"; then
+		devices="$(seleciona_devices)"
+	fi
+	if [ -n "$devices" ]; then
+		configure
+	fi
+}
+
+testpage()
+{
+	local printer printit failed retry dev failed
+
+	printer=$1
+	printit=1
+
+	yesno "Deseja imprimir uma página de teste para a impressora $printer?" || return 0
+
+	while [ "$printit" -eq "1" ]; do
+		failed=0
+		info "Enviando trabalho para a impressora..."
+		echo -e "Falha ao enviar trabalho para a impressora:\n" > $tmpfile
+		zcat /usr/share/im423t/testes-linux/teste.ps.gz | DISPLAY= lpr -P "$printer" >& $tmpfile
+		if [ "$?" -ne "0" ]; then
+			textbox $tmpfile
+			failed=1
+		elif ! yesno "Aguarde enquanto a página é impressa. A impressão funcionou? Você consegue ler a página de testes?"; then
+			device=$(sed -n '/^\(<\(Default\)\?Printer \|Device\)/!d;p' /etc/cups/printers.conf |\
+				sed -n "N;/.*$printer>\nDeviceURI /{s///;s,\?.*$,,;s,.*:,,p;}")
+			# espera o cups liberar a porta.
+			info "Esperando o CUPS liberar a porta..."
+			retry=1
+			while [ "$retry" -eq "1" ]; do
+				(echo -n "" > $device) 2> /dev/null &
+				pid=$!
+				sleep 1
+				kill -9 $pid >& /dev/null
+				wait $pid
+				ret=$?
+				if [ "$ret" -eq "137" -o "$ret" -eq "0" ]; then
+					retry=0
+					sleep 2
+				fi
+			done
+			info "Obtendo status da impressora..."
+			echo "Diagnóstico da impressora $printer em $device:" > $tmpfile
+			echo "" >> $tmpfile
+			dev=$(echo "$device" | sed 's,.*:,,;s,\?.*,,')
+			DISPLAY= im423t-status "$dev" 2>&1 >> $tmpfile
+			textbox $tmpfile
+			failed=1
+		else
+			printit=0
+		fi
+		if [ "$failed" -eq "1" ]; then
+			yesno "Deseja tentar novamente?" || printit=0
+		fi
+	done
+
+	return $failed
+}
+
+grat()
+{
+	if [ -n "$devices" ]; then
+		msgbox "Instalação concluída com êxito."
+	else
+		msgbox "Instalação concluída."
+	fi
+	return 0
+}
+
+quit()
+{
+	rm -f "$tmpfile"
+	exit ${1:+$1}
+}
+
+abort()
+{
+	info "Instalação abortada."
+	quit ${1:+$1}
+}
+
+uninstall()
+{
+	local pack packlist
+	packlist=
+	for pack in $(eval echo \$packages_$distro | sed 's,\.[^.]\+\.rpm,,g'); do
+		if [ -z "$(echo $pack | grep im423t)" ]; then
+			continue
+		fi
+
+		rpm -q $pack >& /dev/null && packlist="$packlist $pack"
+	done
+
+	if [ -n "$packlist" ]; then
+		echo "Removendo pacotes$packlist..."
+		rpm -e $packlist
+	else
+		echo "Não há pacotes a serem removidos."
+	fi
+
+	echo "Removendo configuração de impressoras..."
+	for i in $(ls /etc/cups/ppd/im423t_*.ppd 2> /dev/null); do
+		printer=$(echo $i | sed 's,.*/\([^.]\+\).ppd,\1,')
+		lpadmin -x "$printer"
+	done
+}
+
+
+distro=$(cut -d ' ' -f 3 /etc/conectiva-release)
+
+# Uninstall support, as requested.
+if [ "$0" = "uninstall" -o "$0" = "./uninstall" -o "$1" = "uninstall" ]; then
+	uninstall
+	exit $?
+fi
+
+if [ ! -x "/usr/bin/dialog" ]; then
+	install_dialog || abort
+fi
+
+size=$(set +x; /usr/bin/dialog --print-maxsize --tailboxbg /dev/null 0 0 2>&1)
+max_x=$(echo $size | sed -n 's/.*MaxSize: \([0-9]\+\), \([0-9]\+\)/\2/p')
+max_y=$(echo $size | sed -n 's/.*MaxSize: \([0-9]\+\), \([0-9]\+\)/\1/p')
+
+install_packages && cups && probe && force && grat || abort
+
+quit

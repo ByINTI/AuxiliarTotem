@@ -1,0 +1,41 @@
+#!/bin/bash
+
+#####################################################################
+#                                                                   #
+#           D I E B O L D   P R I N T E R   I M 4 3 3 T             #
+#                                                                   #
+#####################################################################
+
+resposta=$(
+dialog --stdout				\
+        --title '  **** DIEBOLD PRINTER INSTALL  ****   '	\
+        --menu '\nEscolha a sua Distribuicao'	\
+         10 60 4					\
+     1 'Conectiva (8, 9, 10)'			\
+     2 'Linux Kernell 2.4.x'			\
+     3 'Linux Kernell 2.6.x'	    		\
+     0 'Sair'					
+    )
+     
+# Cancelar ou Esc sai do programa
+[ $? -ne 0 ] && exit 0 
+
+# Para cada escolha executar os seguintes comandos
+
+case "$resposta" in
+
+1) sh conectiva ;; 
+    
+2) 	sh linux24x;
+	dialog --title 'Instalando...' --infobox 'Copiando Arquivos...' 6 40 ;
+	dialog --title 'Drivers P/ Kernell 2.4.x' --msgbox 'Intalação Concluida' 6 40;;
+3)  sh linux26x;
+	dialog --title 'Instalando...' --infobox 'Copiando Arquivos...' 6 40 ;
+	dialog --title 'Drivers P/ kernell 2.6.x' --msgbox 'Intalação Concluida' 6 40;;
+0) exit 0 ;;
+
+
+esac
+
+
+#echo 'fim do script'
