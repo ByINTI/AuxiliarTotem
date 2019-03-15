@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">串口打印2.0</string>
+    <string name="action_settings">设置</string>
+    <string name="hello_world">您好，世界!</string>
+    
+    <string name="toggle_button">切换按钮</string>
+    <string name="time_interval">1000</string>
+    <string name="millisecond">毫秒</string>
+    <string name="auto_checkbox">自动</string>
+    <string name="input_data_hint">请输入测试数据!</string>
+    
+    <string name="clear">清除</string>
+    <string name="send">发送测试数据</string>
+    <string name="barcode_1D">一维条形码</string>
+    <string name="printer_state">打印机状态</string>
+    <string name="report_print">报告小票</string>
+    <string name="bank_queue">银行小票</string>
+    <string name="test_print">测试打印</string>
+    <string name="self_check">自检页</string>
+    
+    <!-- 行间距 -->
+    <string name="spaceline_tv">行间距输入\n如：20/40/60/80</string>
+    <string name="spaceline_et">40</string> 
+    <!-- 对齐方式 -->
+    <string name="Align_model">对齐方式</string>
+	<string name="left">靠左</string>
+	<string name="center">居中</string>
+	<string name="right">靠右</string>
+	<!-- 下划线 -->
+	<string name="Underline_model">下划线</string>
+	<string name="underline_cancel">取消</string>
+	<string name="underline_one">下划线1</string>
+	<string name="underline_two">下划线2</string>
+	<!-- 斜体 -->
+	<string name="Italic_model">斜体设置</string>
+	<string name="italic_cancel">取消</string>
+	<string name="italic_setting">斜体</string>
+	<!-- 切刀 -->
+	<string name="Cutpaper_model">切刀模式</string>
+	<string name="cutpaper_total">全切</string>
+	<string name="cutpaper_half">半切</string>
+	<!-- 字体旋转 -->
+	<string name="Rotate_model">字体旋转</string>
+	<string name="rotate_cancel">解除旋转</string>
+	<string name="rotate_90D">旋转90度</string>
+	<!-- Toast -->
+	<string name="Serial_connect_failed">串口连接失败，请重试！</string>
+	<string name="Test_data_is_empty">测试数据为空，请重新输入！</string>
+	<!-- ShowMessage -->
+	<string name="No_read_or_write_permissions">打开串口失败:没有串口读/写权限!</string>
+	<string name="Unknown_error">打开串口失败:未知错误!</string>
+	<string name="Parameter_error">打开串口失败:参数错误!</string>
+	<string name="State_query">状态查询中......</string>
+	<string name="Serial_port_not_open">串口未打开!</string>
+</resources>

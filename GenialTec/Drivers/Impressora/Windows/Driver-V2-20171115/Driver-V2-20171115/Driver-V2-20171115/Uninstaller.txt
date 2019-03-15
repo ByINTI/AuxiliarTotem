@@ -1,0 +1,10 @@
+2019-02-26 14:12:39 DeletePrinterDriver = 3001
+2019-02-26 14:13:14 DeleteMonitor64 = 3008
+2019-02-26 14:13:16 DeleteFile = 5:RMC800PrinterUI.dll
+2019-02-26 14:13:16 DeleteFile = 2:RMC800Printer.gpd
+2019-02-26 14:13:16 DeleteFile = 2:RMC800PrinterMon.dll
+2019-02-26 14:39:00 DeletePrinterDriver = 3001
+2019-02-26 14:39:18 DeleteMonitor64 = 3008
+2019-02-26 14:39:19 DeleteFile = 5:RMC800PrinterUI.dll
+2019-02-26 14:39:19 DeleteFile = 2:RMC800Printer.gpd
+2019-02-26 14:39:19 DeleteFile = 2:RMC800PrinterMon.dll
