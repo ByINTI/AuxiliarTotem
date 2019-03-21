@@ -1,0 +1,46 @@
+##############################################
+# Ingenico BU Services (all rights reserved) #
+##############################################
+#
+# Purpose:
+#  This file setups rigths for telium terminals.
+#  A new device is available as "/dev/telium" when a USB telium is plugged.
+#
+# Installation:
+#  - Copy this file into directory:
+#    "/etc/udev/rules.d/"
+#  - Execute:
+#    "chmod a+r /etc/udev/rules.d/51-telium-usb.rules"
+#  - If you want all the users to access the telium terminal, uncomment the section 1 only and you are done!
+#  - If you want to allow access to a limited number of users, uncomment the section 2 only and add the users to group "uucp".
+#
+# Compatibility:
+#  - RedHat Entreprise Linux 5 (RHEL5)
+#  - CentOS 5
+#
+# Author:
+#  Eric Bouteillon
+#
+
+
+### SECTION 1 : Allow access to ALL users to telium terminal
+
+KERNEL=="ttyACM*", SUBSYSTEM=="tty", SYSFS{idVendor}=="079b", SYSFS{idProduct}=="0028", MODE="0666", SYMLINK+="telium"
+KERNEL=="ttyACM*", SUBSYSTEM=="tty", SYSFS{idVendor}=="079b", SYSFS{idProduct}=="006d", MODE="0666", SYMLINK+="telium"
+KERNEL=="ttyACM*", SUBSYSTEM=="tty", SYSFS{idVendor}=="079b", SYSFS{idProduct}=="0081", MODE="0666", SYMLINK+="telium"
+KERNEL=="ttyACM*", SUBSYSTEM=="tty", SYSFS{idVendor}=="079b", SYSFS{idProduct}=="006e", MODE="0666", SYMLINK+="telium"
+KERNEL=="ttyACM*", SUBSYSTEM=="tty", SYSFS{idVendor}=="079b", SYSFS{idProduct}=="0029", MODE="0666", SYMLINK+="telium"
+KERNEL=="ttyACM*", SUBSYSTEM=="tty", SYSFS{idVendor}=="079b", SYSFS{idProduct}=="0088", MODE="0666", SYMLINK+="telium"
+
+
+
+### SECTION 2 : Allow a limited number of users to access telium terminal.
+### Do not forget to add users in group "uucp" to grant access.
+
+#KERNEL=="ttyACM*", SUBSYSTEM=="tty", SYSFS{idVendor}=="079b", SYSFS{idProduct}=="0028", MODE="0660", SYMLINK+="telium", GROUP="uucp"
+#KERNEL=="ttyACM*", SUBSYSTEM=="tty", SYSFS{idVendor}=="079b", SYSFS{idProduct}=="006d", MODE="0660", SYMLINK+="telium", GROUP="uucp"
+#KERNEL=="ttyACM*", SUBSYSTEM=="tty", SYSFS{idVendor}=="079b", SYSFS{idProduct}=="0081", MODE="0660", SYMLINK+="telium", GROUP="uucp"
+#KERNEL=="ttyACM*", SUBSYSTEM=="tty", SYSFS{idVendor}=="079b", SYSFS{idProduct}=="006e", MODE="0660", SYMLINK+="telium", GROUP="uucp"
+#KERNEL=="ttyACM*", SUBSYSTEM=="tty", SYSFS{idVendor}=="079b", SYSFS{idProduct}=="0029", MODE="0660", SYMLINK+="telium", GROUP="uucp"
+#KERNEL=="ttyACM*", SUBSYSTEM=="tty", SYSFS{idVendor}=="079b", SYSFS{idProduct}=="0088", MODE="0660", SYMLINK+="telium", GROUP="uucp"
+
