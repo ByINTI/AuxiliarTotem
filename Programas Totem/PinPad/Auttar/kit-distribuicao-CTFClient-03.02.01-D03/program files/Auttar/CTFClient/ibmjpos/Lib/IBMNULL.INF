@@ -1,0 +1,66 @@
+;-----------------------------------------------------------------------------
+;
+; Copyright (c) IBM Corporation 2002,2003
+; Module Name: IBMNULL.inf
+; Description: This INF file will configure the NULL ports on the 
+;              IBM SurePos 32x (Windows 2000 ONLY).
+;
+;-----------------------------------------------------------------------------
+
+[Version]
+Signature = "$WINDOWS NT$"
+Class     = System
+ClassGuid = {4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider  = %IBM%
+DriverVer = 06/17/2003,1.01.0002
+
+[DestinationDirs]
+DefaultDestDir  = 11        ;LDID_SYS
+
+[SourceDisksFiles]
+
+[SourceDisksNames]
+1=%DiskName%,,
+
+;===============================
+; Class Installation
+;===============================
+[ClassInstall32]
+AddReg=system_class_addreg
+
+[system_class_addreg]
+HKR,,,,%SystemClassName%
+HKR,,Icon,,"-27"
+
+[ControlFlags]
+
+;===============================
+; Driver Installation
+;===============================
+[Manufacturer]
+%IBM%=IBM_SP32x
+
+;
+; Manufacturer Name Section
+;
+[IBM_SP32x]
+%IBM_SP32xBridgeName%=IBM_SP32xBridge,MF\PCI1014_BRIDGE
+
+;----------------------------------------
+; BRIDGE Port Install
+;----------------------------------------
+[IBM_SP32xBridge]
+
+[IBM_SP32xBridge.Services]
+AddService = , %SPSVCINST_ASSOCSERVICE%   ; null service install
+
+
+; User readable strings
+;----------------------------------------------------------
+[Strings]
+IBM                    = "IBM Corporation"
+DiskName               = "IBM SurePOS 32x Multi-IO Install Disk"
+IBM_SP32xBridgeName    = "IBM SurePOS 32x Bridge"
+SystemClassName        = "System devices"
+SPSVCINST_ASSOCSERVICE = 0x00000002
+

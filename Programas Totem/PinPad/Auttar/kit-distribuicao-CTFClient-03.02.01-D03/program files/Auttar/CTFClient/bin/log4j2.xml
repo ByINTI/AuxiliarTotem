@@ -1,0 +1,97 @@
+<Configuration status="info" monitorInterval="30">
+
+	<Properties>		
+	    <Property name="sub-path">client-services</Property>	    
+	 </Properties>
+
+	<Appenders>
+		
+		<RollingFile name="ctfclient" fileName="logs/LogCTFClient.log" filePattern="logs/$${date:MM-yyyy}/LogCTFClient-%d{dd-MM-yyyy}-%i.log.gz">
+			<PatternLayout>
+				<Pattern>%-2d{dd/MM/yy HH:mm:ss.SSS} [%t] %6p [%c{1}] - %m%n</Pattern>
+			</PatternLayout>			
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true" />
+				<SizeBasedTriggeringPolicy size="10 MB"/>
+			</Policies>			
+			<DefaultRolloverStrategy max="10" compressionLevel="7" />
+		</RollingFile>
+		
+		<RollingFile name="client-service" fileName="logs/${sub-path}/client-services.log" filePattern="logs/${sub-path}/$${date:MM-yyyy}/client-services-%d{dd-MM-yyyy}-%i.log.gz">
+			<PatternLayout>
+				<Pattern>%-2d{dd/MM/yy HH:mm:ss.SSS} [%t] %6p [%c{1}] - %m%n</Pattern>
+			</PatternLayout>			
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true" />
+				<SizeBasedTriggeringPolicy size="10 MB"/>
+			</Policies>			
+			<DefaultRolloverStrategy max="10" compressionLevel="7" />
+		</RollingFile>
+		
+		<RollingFile name="geral" fileName="logs/${sub-path}/client-services-geral.log" filePattern="logs/${sub-path}/$${date:MM-yyyy}/client-services-geral-%d{dd-MM-yyyy}-%i.log.gz">
+			<PatternLayout>
+				<Pattern>%-2d{dd/MM/yy HH:mm:ss.SSS} [%t] %6p [%c{1}] - %m%n</Pattern>
+			</PatternLayout>			
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true" />
+				<SizeBasedTriggeringPolicy size="10 MB"/>				
+			</Policies>			
+			<DefaultRolloverStrategy max="10" compressionLevel="7" />
+		</RollingFile>
+				
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout pattern="%-2d{dd/MM/yy HH:mm:ss.SSS} [%t] %6p [%c{1}] - %m%n" />
+		</Console> 	
+		
+	</Appenders>
+	
+	<Loggers>
+	
+		<Root level="info">
+			<AppenderRef ref="CONSOLE" />
+			<AppenderRef ref="geral" />
+		</Root>
+		
+		<!-- configuracao CTFClient -->
+		<Logger name="com.csi.ctfclient.servicos.CTFClient" level="info"  additivity="false">
+			<AppenderRef ref="ctfclient"/>
+		</Logger>
+		<Logger name="com.csi.ctfclient.operacoes.ProcessManager" level="info"  additivity="false">
+			<AppenderRef ref="ctfclient"/>
+		</Logger>
+		<Logger name="com.csi.ctfclient.config.ControladorConfCTFClient" level="info"  additivity="false">
+			<AppenderRef ref="ctfclient"/>
+		</Logger>
+		<Logger name="com.csi.ctfclient.tools.devices.Periferico" level="info"  additivity="false">
+			<AppenderRef ref="ctfclient"/>
+		</Logger>
+		<Logger name="com.csi.ctfclient.integracao.IntegradorMain" level="info"  additivity="false">
+			<AppenderRef ref="ctfclient"/>
+		</Logger>
+		<Logger name="com.csi.ctfclient.integracao.TerminalManager" level="info"  additivity="false">
+			<AppenderRef ref="ctfclient"/>
+		</Logger>
+		<Logger name="com.csi.ctfclient.apitef" level="info"  additivity="false">
+			<AppenderRef ref="ctfclient"/>
+		</Logger>
+
+		<!-- configuracao clientservices -->
+		<Logger name="br.com.auttar.framework" level="info"  additivity="false">
+			<AppenderRef ref="client-service"/>
+		</Logger>		
+		<Logger name="br.com.auttar.clientservices" level="info"  additivity="false">
+			<AppenderRef ref="client-service"/>
+		</Logger>
+		<Logger name="br.com.auttar.clientservices.services" level="info"  additivity="false">
+			<AppenderRef ref="client-service"/>
+		</Logger>
+		<Logger name="br.com.auttar.clientservices.handlers" level="info"  additivity="false">
+			<AppenderRef ref="client-service"/>
+		</Logger>
+		<Logger name="br.com.auttar.clientservices.handlers.http" level="info"  additivity="false">
+			<AppenderRef ref="client-service"/>
+		</Logger>
+		
+	</Loggers>
+	
+</Configuration>

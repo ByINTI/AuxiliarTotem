@@ -1,0 +1,96 @@
+;------------------------------------------------------------------------------
+;
+; Copyright (c) IBM Corporation 2002,2003
+; Module Name: IBMPorts.inf
+; Description: This INF file will configure the COM ports on the 
+;              IBM SurePos 32x.
+;
+;------------------------------------------------------------------------------
+
+[Version]
+signature = "$WINDOWS NT$"
+Class     = Ports
+ClassGuid = {4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider  = %IBM%
+DriverVer = 06/17/2003,1.01.0002
+
+[DestinationDirs]
+DefaultDestDir  = 11        ;System directory
+ComPort.NT.Copy = 12        ;Drivers directory
+Inf.Copy        = 17        ;INF Directory
+
+;--- Device Install Section ---------------------------------------------------
+[SourceDisksFiles]
+
+[SourceDisksNames]
+1 = %DiskName%,,
+
+[ClassInstall]
+AddReg = PortsClass.AddReg
+
+[PortsClass.AddReg]
+HKR,,,,%PortsClassName%
+
+[ClassInstall32.NT]
+AddReg=PortsClass.NT.AddReg
+
+[PortsClass.NT.AddReg]
+HKR,,,,%PortsClassName%
+HKR,,Icon,,"-23"
+HKR,,Installer32,,"MsPorts.Dll,PortsClassInstaller"
+
+[Inf.Copy]
+IBMPorts.inf
+
+[Manufacturer]
+%IBM%=IBM_SP32x
+
+[IBM_SP32x]
+%IBM_SP32x_COM.DRVDESC% = ComPort,MF\PCI1014_COM
+
+;--- COM Port  ----------------------------------------------------------------
+[ComPort.NT]
+CopyFiles = ComPort.NT.Copy
+AddReg    = ComPort.AddReg, ComPort.NT.AddReg
+SyssetupPnPFlags = 1
+
+[ComPort.NT.HW]
+AddReg  = ComPort.NT.HW.AddReg
+
+[ComPort.NT.Services]
+Include = msports.inf
+Needs   = ComPort.NT.Services
+Needs   = SerialEnumerator.NT.Services
+
+[ComPort.AddReg]
+HKR,,PortSubClass,1,01
+
+[ComPort.NT.Copy]
+;serial.sys,,,0x00000010
+;serenum.sys,,,0x00000010
+
+[ComPort.NT.AddReg]
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[ComPort.NT.HW.AddReg]
+HKR,,"UpperFilters",0x00010000,"serenum"
+
+;--- Resource Configuration  --------------------------------------------------
+; LogConfig sections
+[IBMSP32xLogConf8]
+ConfigPriority=HARDRECONFIG
+IOConfig=8@100-3ff%fff8(3ff::)
+IRQConfig=3,4,5,6,7,8,9,10,11,12,13,14,15
+
+[IBMSP32xLogConf64]
+ConfigPriority=HARDRECONFIG
+IOConfig=64@100-ffff%ffC0(0::)
+IRQConfig=3,4,5,6,7,8,9,10,11,12,13,14,15
+
+;--- Strings  -----------------------------------------------------------------
+[Strings]
+IBM        = "IBM Corporation"
+DiskName   = "IBM SurePOS 32x Multi-IO Install Disk"
+PortsClassName = "Ports (COM & LPT)"
+IBM_SP32x_COM.DRVDESC = "IBM SurePOS 32x PCI Serial Port"
+
