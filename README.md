@@ -9,3 +9,13 @@ Material Auxiliar para o Totem INTI
 ### Pasta de Inicialização do Windows
 
 %appdata%\Microsoft\Windows\Start Menu
+
+# Links Uteis
+
+## Teste do QzTray
+
+https://dist-1wlx51pea.now.sh/
+
+## Teste da Auttar
+
+https://auttar-js.netlify.com/
